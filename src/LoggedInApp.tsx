@@ -1,7 +1,12 @@
 import Icon from "@ant-design/icons";
-import { Layout, PageHeader, Divider, Menu, Button, Badge } from "antd";
+import { Badge, Button, Divider, Layout, PageHeader } from "antd";
 import { useState } from "react";
-import "./Navbar.css";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import "./LoggedInApp.scss";
+import "./Navbar.scss";
+import ProtectedRoute from './ProtectedRoute';
+import Sidebar from "./Sidebar";
+import Profile from "./Profile";
 
 const NotificationSvg = () => (
     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,11 +27,18 @@ const MenuGridSvg = () => (
         <rect x="12" y="6" width="4" height="4" rx="1" fill="#868DA1"/>
         <rect x="12" y="12" width="4" height="4" rx="1" fill="#868DA1"/>
     </svg>
+)
 
+const ExitIconSvg = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18" stroke="#5C6D8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 6L18 18" stroke="#5C6D8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
 )
 
 const NotificationIcon = (props: any) => <Icon component={NotificationSvg} {...props} />;
 const MenuGridIcon = (props: any) => <Icon component={MenuGridSvg} {...props} />
+const ExitIconIcon = (props: any) => <Icon component={ExitIconSvg} {...props} />
 
 export default function LoggedInApp() {
     const [showNotif, setShowNotif] = useState(false);
@@ -59,8 +71,15 @@ export default function LoggedInApp() {
                     <div className="nav-divider"></div>
                     <div className="nav-item">
                         <Badge count="1" className="nav-badge-count">
-                            <Button shape="circle" onClick={toggleNotif} className="nav-icon" icon={<NotificationIcon/>}></Button>
+                            <Button shape="circle" onClick={toggleNotif} className="nav-icon" icon={(
+                                showNotif ? <ExitIconIcon/> : <NotificationIcon/>
+                            )}></Button>
                         </Badge>
+                        <div className="Drawer" style={{
+                            display: showNotif ? "block" : "none"
+                        }}>
+                            <h3>Notifications</h3>
+                        </div>
                     </div>
                     <div className="nav-item">
                         <Button shape="circle" className="nav-icon">pfp </Button>
@@ -71,6 +90,28 @@ export default function LoggedInApp() {
                 </div>
                 <Divider></Divider>
             </PageHeader>
+            <Layout.Content>
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path="/login">
+                            {/* <Login/> */}
+                            
+                            <h1>Login</h1>
+                        </Route>
+                        <Route exact path="/login/callback">
+                            {/* <Callback/> */}
+                            <h1>Callback</h1>
+                        </Route>
+                        <ProtectedRoute exact path={["/", "/profile"]}>
+                            <Profile/>
+                        </ProtectedRoute>
+                        <ProtectedRoute exact path="/feed">
+                            {/* <Feed/> */}
+                            <h1>Feed</h1>
+                        </ProtectedRoute>
+                    </Switch>
+                </BrowserRouter>
+            </Layout.Content>
         </Layout>
     )
 }

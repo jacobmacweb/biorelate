@@ -1,0 +1,31 @@
+.Sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    width: 276px !important;
+
+    .SidebarItem {
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 100%;
+        
+        letter-spacing: 0.01em;
+        height: 56px;
+        width: 276px !important;
+
+        
+        border-radius: 100px;
+
+        margin-bottom: 8px;
+        padding: 20px 16px 20px 24px;
+
+        color: #868DA1;
+        &--active {
+            color: #1A88E8;
+            background: rgba(26, 136, 232, 0.1);
+        }
+    }
+}
