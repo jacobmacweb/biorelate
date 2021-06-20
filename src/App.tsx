@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import ProtectedRoute from './ProtectedRoute';
+import './Button.css';
+import 'antd/dist/antd.css';
+import './NotifDrawer.css';
+import LoggedInApp from './LoggedInApp';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <LoggedInApp></LoggedInApp>
+            <Switch>
+                <Route exact path="/login">
+                    {/* <Login/> */}
+                    <h1>Login</h1>
+                </Route>
+                <Route exact path="/login/callback">
+                    {/* <Callback/> */}
+                    <h1>Callback</h1>
+                </Route>
+                <ProtectedRoute exact path={["/", "/profile"]}>
+                    {/* <Profile/> */}
+                    <h1>Profile</h1>
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/feed">
+                    {/* <Feed/> */}
+                    <h1>Feed</h1>
+                </ProtectedRoute>
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 export default App;
