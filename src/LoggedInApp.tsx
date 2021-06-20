@@ -7,11 +7,12 @@ import "./Navbar.scss";
 import ProtectedRoute from './ProtectedRoute';
 import Sidebar from "./Sidebar";
 import Profile from "./Profile";
+import NotificationDrawer from "./NotifictionDrawer";
 
 const NotificationSvg = () => (
     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16 7C16 5.4087 15.3679 3.88258 14.2426 2.75736C13.1174 1.63214 11.5913 1 10 1C8.4087 1 6.88258 1.63214 5.75736 2.75736C4.63214 3.88258 4 5.4087 4 7C4 14 1 16 1 16H19C19 16 16 14 16 7Z" stroke="#5C6D8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.73 20C11.5542 20.3031 11.3019 20.5547 10.9982 20.7295C10.6946 20.9044 10.3504 20.9965 10 20.9965C9.64964 20.9965 9.30541 20.9044 9.00179 20.7295C8.69818 20.5547 8.44583 20.3031 8.27002 20" stroke="#5C6D8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 7C16 5.4087 15.3679 3.88258 14.2426 2.75736C13.1174 1.63214 11.5913 1 10 1C8.4087 1 6.88258 1.63214 5.75736 2.75736C4.63214 3.88258 4 5.4087 4 7C4 14 1 16 1 16H19C19 16 16 14 16 7Z" stroke="#5C6D8E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M11.73 20C11.5542 20.3031 11.3019 20.5547 10.9982 20.7295C10.6946 20.9044 10.3504 20.9965 10 20.9965C9.64964 20.9965 9.30541 20.9044 9.00179 20.7295C8.69818 20.5547 8.44583 20.3031 8.27002 20" stroke="#5C6D8E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 )
 
@@ -31,8 +32,8 @@ const MenuGridSvg = () => (
 
 const ExitIconSvg = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 6L6 18" stroke="#5C6D8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M6 6L18 18" stroke="#5C6D8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 6L6 18" stroke="#5C6D8E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M6 6L18 18" stroke="#5C6D8E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 )
 
@@ -42,6 +43,7 @@ const ExitIconIcon = (props: any) => <Icon component={ExitIconSvg} {...props} />
 
 export default function LoggedInApp() {
     const [showNotif, setShowNotif] = useState(false);
+    const [notifCount, setNotifCount] = useState(0);
 
     const toggleNotif = () => {
         setShowNotif(!showNotif);
@@ -70,16 +72,12 @@ export default function LoggedInApp() {
                     </div>
                     <div className="nav-divider"></div>
                     <div className="nav-item">
-                        <Badge count="1" className="nav-badge-count">
+                        <Badge count={notifCount} className="nav-badge-count">
                             <Button shape="circle" onClick={toggleNotif} className="nav-icon" icon={(
                                 showNotif ? <ExitIconIcon/> : <NotificationIcon/>
                             )}></Button>
                         </Badge>
-                        <div className="Drawer" style={{
-                            display: showNotif ? "block" : "none"
-                        }}>
-                            <h3>Notifications</h3>
-                        </div>
+                        <NotificationDrawer shouldDisplay={showNotif} notifCount={notifCount} setNotifCount={setNotifCount}></NotificationDrawer>
                     </div>
                     <div className="nav-item">
                         <Button shape="circle" className="nav-icon">pfp </Button>

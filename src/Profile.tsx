@@ -5,7 +5,7 @@ import Body from "./Body";
 export default function Profile() {
     return (
         <>
-            <h1>Account Settings</h1>
+            <h1>Account settings</h1>
             <Row>
                 <Col>
                     <Sidebar></Sidebar>

@@ -1,0 +1,62 @@
+.NewNotif {
+    color: #F64444;
+}
+
+
+.Drawer {
+    z-index: 999;
+    position: absolute;
+    top: 64px;
+    left: calc(-348px + 48px);
+    width: 348px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 16px 45px rgba(29, 28, 38, 0.1);
+    border-radius: 8px;
+    padding: 24px 24px 0 24px;
+
+    h3 {
+        font-size: 18px;
+    }
+    
+
+    .Notification {
+        display: flex;
+        flex-direction: row;
+        margin: 8px 0;
+        padding: 8px;
+        border-bottom: 1px solid #EFEFF8;
+        line-height: initial;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .Content {
+            // display: flex;
+            // flex-direction: column;
+            & > .Title {
+                font-weight: 600 !important;
+                font-size: 14px !important;
+                padding-bottom: 8px;
+            }
+
+            & > small {
+                color: #868DA1;
+                margin: 0;
+            }
+        }
+
+        .Unread {
+            padding-right: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .ant-badge-status-dot {
+                height: 10px;
+                width: 10px;
+                box-shadow: 0px 4px 10px rgba(246, 68, 68, 0.2);
+            }
+        }
+    }
+}
