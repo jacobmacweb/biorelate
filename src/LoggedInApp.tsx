@@ -1,6 +1,6 @@
 import Icon from "@ant-design/icons";
 import { Badge, Button, Divider, Layout, PageHeader } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import "./LoggedInApp.scss";
 import "./Navbar.scss";
@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Sidebar from "./Sidebar";
 import Profile from "./Profile";
 import NotificationDrawer from "./NotifictionDrawer";
+import webAuth, { getUserData } from "./webauth";
 
 const NotificationSvg = () => (
     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,6 +43,16 @@ const MenuGridIcon = (props: any) => <Icon component={MenuGridSvg} {...props} />
 const ExitIconIcon = (props: any) => <Icon component={ExitIconSvg} {...props} />
 
 export default function LoggedInApp() {
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        getUserData((err, authResult) => {
+            if (!err) {
+                setUser(authResult);
+            }
+        });
+    }, []);
+
     const [showNotif, setShowNotif] = useState(false);
     const [notifCount, setNotifCount] = useState(0);
 
@@ -49,7 +60,7 @@ export default function LoggedInApp() {
         setShowNotif(!showNotif);
     }
     return (
-        <Layout>
+        <Layout className="LoggedInApp">
             <PageHeader>
                 <div className="nav">
                     <div className="nav-item">
@@ -77,10 +88,12 @@ export default function LoggedInApp() {
                                 showNotif ? <ExitIconIcon/> : <NotificationIcon/>
                             )}></Button>
                         </Badge>
-                        <NotificationDrawer shouldDisplay={showNotif} notifCount={notifCount} setNotifCount={setNotifCount}></NotificationDrawer>
+                        <NotificationDrawer shouldDisplay={showNotif} notifCount={notifCount} setNotifCount={(count: number) => setNotifCount(count)}></NotificationDrawer>
                     </div>
                     <div className="nav-item">
-                        <Button shape="circle" className="nav-icon">pfp </Button>
+                        <Button shape="circle" className="nav-icon" style={{
+                            backgroundImage: user?.picture
+                        }}> </Button>
                     </div>
                     <div className="nav-item">
                         <Button className="button">Log out</Button>

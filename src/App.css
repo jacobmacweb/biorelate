@@ -1,25 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-#root {
-  margin: 0 120px !important;
-}
-
 h1 {
   font-family: "Inter", sans-serif;
   font-size: 48px;
   font-weight: 700 !important;
+  color: #344562 !important;
 }
 
 h2 {
   font-family: "Inter", sans-serif;
   font-size: 24px;
   font-weight: 700 !important;
+  color: #344562 !important;
 }
 
 h3 {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 600 !important;
+  color: #344562 !important;
 }
 
 p {
