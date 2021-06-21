@@ -1,0 +1,27 @@
+.APIForm {
+    .ant-form-item-label {
+        font-weight: 600 !important;
+    }
+
+    .ant-input {
+        background: #EFEFF8;
+        /* soft grey */
+
+        border: 1px solid #EFEFF8;
+        box-sizing: border-box;
+        border-radius: 8px;
+
+        width: 100%;
+
+        height: 48px;
+        color: #344562;
+    }
+
+    .submit {
+        background: #1A88E8;
+        border-radius: 8px;
+        height: 56px;
+        font-weight: 600;
+        padding: 17px 24px;
+    }
+}

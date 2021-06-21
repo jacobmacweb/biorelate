@@ -113,7 +113,7 @@ export default function LoggedInApp() {
                             {/* <Callback/> */}
                             <h1>Callback</h1>
                         </Route>
-                        <ProtectedRoute exact path={["/", "/profile"]}>
+                        <ProtectedRoute path={["/", "/profile"]}>
                             <Profile/>
                         </ProtectedRoute>
                         <ProtectedRoute exact path="/feed">

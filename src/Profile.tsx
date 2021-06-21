@@ -1,6 +1,8 @@
 import { Row, Col } from "antd";
 import Sidebar from "./Sidebar";
 import Body from "./Body";
+import API from "./API";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 export default function Profile() {
     return (
@@ -12,7 +14,14 @@ export default function Profile() {
                 </Col>
                 <Col>
                     <Body>
-                        ada
+                        <Switch>
+                            <Route exact path={["/", "/profile"]}>
+                                {/* User settings */}
+                            </Route>
+                            <Route exact path="/profile/api">
+                                <API/>
+                            </Route>
+                        </Switch>
                     </Body>
                 </Col>
             </Row>

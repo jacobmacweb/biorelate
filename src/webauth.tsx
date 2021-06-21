@@ -17,7 +17,8 @@ export function getUserData(cb: Auth0Callback<any>) {
         } else {
             // Test data
             cb(null, {
-                picture: "/pfp.png"
+                picture: "/pfp.png",
+                accessToken: "1234-1234-1234-1234"
             })
         }
     });

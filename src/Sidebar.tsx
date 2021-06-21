@@ -5,13 +5,13 @@ import { useLocation, NavLink } from 'react-router-dom';
 export default function Sidebar() {
     return (
         <div className="Sidebar">
-            <NavLink className="SidebarItem" activeClassName="SidebarItem--active" to="/">
+            <NavLink exact className="SidebarItem" activeClassName="SidebarItem--active" to="/">
                 General
             </NavLink>
             <div className="SidebarItem">
                 Plan
             </div>
-            <NavLink className="SidebarItem" activeClassName="SidebarItem--active" to="/profile/api">
+            <NavLink exact className="SidebarItem" activeClassName="SidebarItem--active" to="/profile/api">
                 API
             </NavLink>
             <div className="SidebarItem">
