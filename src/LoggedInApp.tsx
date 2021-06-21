@@ -1,6 +1,6 @@
 import Icon from "@ant-design/icons";
 import { Badge, Button, Divider, Layout, PageHeader } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import "./LoggedInApp.scss";
 import "./Navbar.scss";
@@ -92,8 +92,8 @@ export default function LoggedInApp() {
                     </div>
                     <div className="nav-item">
                         <Button shape="circle" className="nav-icon" style={{
-                            backgroundImage: user?.picture
-                        }}> </Button>
+                            background: `transparent url("${user?.picture}") no-repeat top`
+                        }}></Button>
                     </div>
                     <div className="nav-item">
                         <Button className="button">Log out</Button>

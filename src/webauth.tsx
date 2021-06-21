@@ -16,7 +16,9 @@ export function getUserData(cb: Auth0Callback<any>) {
             cb(err, authResult);
         } else {
             // Test data
-            cb(null, {})
+            cb(null, {
+                picture: "/pfp.png"
+            })
         }
     });
 }
