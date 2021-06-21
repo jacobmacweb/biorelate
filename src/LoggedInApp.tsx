@@ -1,7 +1,7 @@
 import Icon from "@ant-design/icons";
 import { Badge, Button, Divider, Layout, PageHeader } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import "./LoggedInApp.scss";
 import "./Navbar.scss";
 import ProtectedRoute from './ProtectedRoute';
@@ -91,9 +91,9 @@ export default function LoggedInApp() {
                         <NotificationDrawer shouldDisplay={showNotif} notifCount={notifCount} setNotifCount={(count: number) => setNotifCount(count)}></NotificationDrawer>
                     </div>
                     <div className="nav-item">
-                        <Button shape="circle" className="nav-icon" style={{
-                            background: `transparent url("${user?.picture}") no-repeat top`
-                        }}></Button>
+                        <Button shape="circle" className="nav-icon" icon={
+                            <Icon component={() => <img src={user?.picture} width="100%"></img>}></Icon>
+                        }></Button>
                     </div>
                     <div className="nav-item">
                         <Button className="button">Log out</Button>
@@ -105,9 +105,7 @@ export default function LoggedInApp() {
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/login">
-                            {/* <Login/> */}
-                            
-                            <h1>Login</h1>
+                            <Redirect to="/"></Redirect>
                         </Route>
                         <Route exact path="/login/callback">
                             {/* <Callback/> */}
@@ -116,10 +114,9 @@ export default function LoggedInApp() {
                         <ProtectedRoute path={["/", "/profile"]}>
                             <Profile/>
                         </ProtectedRoute>
-                        <ProtectedRoute exact path="/feed">
-                            {/* <Feed/> */}
+                        {/* <ProtectedRoute exact path="/feed">
                             <h1>Feed</h1>
-                        </ProtectedRoute>
+                        </ProtectedRoute> */}
                     </Switch>
                 </BrowserRouter>
             </Layout.Content>

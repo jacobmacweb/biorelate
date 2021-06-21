@@ -11,7 +11,7 @@ export default function API() {
             if (!err) {
                 form.setFieldsValue({key: res.accessToken});
             }
-        })
+        });
     };
 
     return (

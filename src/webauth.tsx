@@ -18,7 +18,11 @@ export function getUserData(cb: Auth0Callback<any>) {
             // Test data
             cb(null, {
                 picture: "/pfp.png",
-                accessToken: "1234-1234-1234-1234"
+                accessToken: "1234-1234-1234-1234",
+                given_name: "Ramona",
+                family_name: "Flowers",
+                email: "ramona.flowers@biorelate.com",
+                phone_number: "207 555 0119"
             })
         }
     });
