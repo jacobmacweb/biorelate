@@ -1,14 +1,14 @@
 import Icon from "@ant-design/icons";
-import { Badge, Button, Divider, Layout, PageHeader } from "antd";
+import { Badge, Button, Divider, Layout, notification, PageHeader } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import "./LoggedInApp.scss";
 import "./Navbar.scss";
 import ProtectedRoute from './ProtectedRoute';
-import Sidebar from "./Sidebar";
 import Profile from "./Profile";
 import NotificationDrawer from "./NotifictionDrawer";
 import webAuth, { getUserData } from "./webauth";
+import Callback from "./Callback";
 
 const NotificationSvg = () => (
     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,6 +49,9 @@ export default function LoggedInApp() {
         getUserData((err, authResult) => {
             if (!err) {
                 setUser(authResult);
+                notification.info({
+                    message: `Welcome back, ${authResult.given_name} ${authResult.family_name}`
+                })
             }
         });
     }, []);
@@ -59,6 +62,11 @@ export default function LoggedInApp() {
     const toggleNotif = () => {
         setShowNotif(!showNotif);
     }
+
+    const logout = () => {
+        webAuth.logout({ returnTo: `${window.location.host}/login` });
+    }
+
     return (
         <Layout className="LoggedInApp">
             <PageHeader>
@@ -96,7 +104,7 @@ export default function LoggedInApp() {
                         }></Button>
                     </div>
                     <div className="nav-item">
-                        <Button className="button">Log out</Button>
+                        <Button className="button" onClick={logout}>Log out</Button>
                     </div>
                 </div>
                 <Divider></Divider>
@@ -108,8 +116,7 @@ export default function LoggedInApp() {
                             <Redirect to="/"></Redirect>
                         </Route>
                         <Route exact path="/login/callback">
-                            {/* <Callback/> */}
-                            <h1>Callback</h1>
+                            <Callback/>
                         </Route>
                         <ProtectedRoute path={["/", "/profile"]}>
                             <Profile/>

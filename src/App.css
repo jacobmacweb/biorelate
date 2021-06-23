@@ -24,7 +24,13 @@ h3 {
 p {
   font-family: "Inter", sans-serif;
   /* font-size: 14px; */
+  color: #868DA1;
+
   font-weight: 500 !important;
+}
+
+p.ant-scroll-number-only-unit {
+  color: white;
 }
 
 small p {

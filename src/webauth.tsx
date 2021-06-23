@@ -31,20 +31,9 @@ export function getUserData(cb: Auth0Callback<any>) {
 export function loginUser(email: string, password: string, cb: Auth0Callback<any>) {
     webAuth.login({ email, password }, (err, res) => {
         if (err && !process.env.REACT_APP_TESTING) {
-            cb(err, res)
+            cb(err, res);
         } else {
             cb(null, {});
         }
     })
-    webAuth.checkSession({ prompt: 'none' }, (err, authResult) => {
-        console.log(process.env);
-        if (!err && !process.env.REACT_APP_TESTING) {
-            cb(err, authResult);
-        }
-        
-        // Test data
-        cb(null, {
-            
-        })
-    });
 }

@@ -6,4 +6,44 @@
     .SettingsCol:last-child {
         padding-left: 16px;
     }
+
+    .avatar-row {
+        padding-top: 16px !important;
+
+        button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #EFEFF8;
+            box-sizing: border-box;
+            border-radius: 8px;
+            height: 48px;
+
+            margin-left: 16px;
+            font-weight: 600;
+            color: #868DA1;
+        }
+
+        button.upload {
+            color: #1A88E8;
+        }
+    }
+
+    label {
+        font-weight: 600 !important;
+    }
+
+    .avatar {
+        height: 48px;
+        border-radius: 100px;
+    }
+}
+
+.delete-section {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+
+    button {
+        font-weight: 600;
+        color: #868DA1;
+    }
 }
