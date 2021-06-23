@@ -10,6 +10,7 @@ export default function Settings() {
 
     useEffect(() => {
         getUserData((err, res) => {
+            console.log(res);
             setUser(res);
             if (!err) {
                 form.setFieldsValue({
@@ -19,7 +20,7 @@ export default function Settings() {
                     phone: res.phone_number
                 });
             }
-        })
+        });
     }, []);
     return (
         <>

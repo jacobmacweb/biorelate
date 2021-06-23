@@ -19,7 +19,6 @@ export default function LoggedOutApp({ setAuthenticated }: any) {
                 setTimeout(() => {
                     setError(null);
                 }, 5000);
-                console.log(err);
             } else {
                 setAuthenticated(true);
             }

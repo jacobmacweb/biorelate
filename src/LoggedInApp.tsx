@@ -46,12 +46,9 @@ export default function LoggedInApp() {
     const [user, setUser] = useState<any>(null);
 
     useEffect(() => {
-        getUserData((err, authResult) => {
+        getUserData((err, userData) => {
             if (!err) {
-                setUser(authResult);
-                notification.info({
-                    message: `Welcome back, ${authResult.given_name} ${authResult.family_name}`
-                })
+                setUser(userData);
             }
         });
     }, []);

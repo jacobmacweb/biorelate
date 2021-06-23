@@ -1,13 +1,13 @@
 import { Form, Input, Button } from "antd";
 import { useState } from "react";
 import "./API.scss";
-import { getUserData } from "./webauth";
+import { getSession } from "./webauth";
 
 export default function API() {
     const [form] = Form.useForm();
 
     const getAPICode = (values: any) => {
-        getUserData((err, res) => {
+        getSession((err, res) => {
             if (!err) {
                 form.setFieldsValue({key: res.accessToken});
             }
